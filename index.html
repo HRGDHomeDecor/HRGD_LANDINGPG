@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HRGD Home Decor — Woven in Haryana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --indigo:#1F3A5F;
+    --madder:#A63D40;
+    --turmeric:#E0A639;
+    --cotton:#F3ECDC;
+    --charcoal:#2B2620;
+    --cotton-dim:#E9E0CC;
+    --radius:2px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cotton);
+    color:var(--charcoal);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:inherit;}
+
+  img{max-width:100%; display:block;}
+
+  :focus-visible{
+    outline:2px solid var(--madder);
+    outline-offset:3px;
+  }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--madder);
+  }
+
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+    color:var(--charcoal);
+  }
+
+  .wrap{
+    max-width:1120px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* ---------- WOVEN DIVIDER (signature element) ---------- */
+  .weave{
+    height:14px;
+    width:100%;
+    background:
+      repeating-linear-gradient(90deg,
+        var(--indigo) 0 18px,
+        var(--turmeric) 18px 20px,
+        var(--indigo) 20px 38px,
+        var(--madder) 38px 40px
+      );
+    background-size:40px 100%;
+    position:relative;
+    overflow:hidden;
+  }
+  .weave::before{
+    content:"";
+    position:absolute; inset:0;
+    background:repeating-linear-gradient(0deg, rgba(243,236,220,0.28) 0 2px, transparent 2px 4px);
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    background:var(--cotton);
+    position:sticky; top:0; z-index:20;
+    border-bottom:1px solid rgba(43,38,32,0.12);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:20px 0;
+  }
+  .logo{
+    font-family:'Fraunces', serif;
+    font-weight:700;
+    font-size:1.3rem;
+    letter-spacing:-0.02em;
+  }
+  .logo span{color:var(--madder);}
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:32px;
+  }
+  nav ul a{
+    font-size:0.92rem;
+    text-decoration:none;
+    color:var(--charcoal);
+    position:relative;
+    padding-bottom:2px;
+  }
+  nav ul a:hover{color:var(--madder);}
+  .nav-links{display:flex;}
+  .menu-toggle{display:none; background:none; border:none; font-size:1.5rem; cursor:pointer; color:var(--charcoal);}
+
+  @media (max-width:760px){
+    .nav-links{
+      display:none;
+      position:absolute; top:100%; left:0; right:0;
+      background:var(--cotton);
+      border-bottom:1px solid rgba(43,38,32,0.12);
+      flex-direction:column;
+      gap:0;
+      padding:8px 32px 20px;
+    }
+    .nav-links.open{display:flex;}
+    nav ul{flex-direction:column; gap:0;}
+    nav ul li{padding:10px 0; border-bottom:1px solid rgba(43,38,32,0.08);}
+    .menu-toggle{display:block;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:88px 0 72px;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:56px;
+    align-items:center;
+  }
+  @media (max-width:860px){
+    .hero{grid-template-columns:1fr; padding:56px 0 48px;}
+  }
+  .hero h1{
+    font-size:clamp(2.4rem, 5vw, 3.6rem);
+    line-height:1.05;
+    margin:14px 0 22px;
+  }
+  .hero p.lede{
+    font-size:1.08rem;
+    max-width:46ch;
+    color:#4A4338;
+    margin-bottom:32px;
+  }
+  .cta-row{display:flex; gap:16px; flex-wrap:wrap; align-items:center;}
+
+  .btn-primary{
+    display:inline-block;
+    background:var(--madder);
+    color:var(--cotton);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    text-decoration:none;
+    padding:16px 30px;
+    border-radius:var(--radius);
+    border:1px dashed rgba(243,236,220,0.55);
+    outline-offset:3px;
+    transition:transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary:hover{background:#8f3336; transform:translateY(-1px);}
+
+  .btn-ghost{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+    text-decoration:none;
+    color:var(--charcoal);
+    border-bottom:1px solid var(--charcoal);
+    padding-bottom:2px;
+  }
+  .btn-ghost:hover{color:var(--madder); border-color:var(--madder);}
+
+  /* Hero swatch stack — represents dyed yarn skeins, no external images */
+  .swatch-stack{
+    position:relative;
+    height:380px;
+  }
+  .skein{
+    position:absolute;
+    border-radius:50%;
+    box-shadow:inset 0 0 0 10px rgba(255,255,255,0.06), 0 18px 30px rgba(43,38,32,0.18);
+  }
+  .skein.s1{width:210px; height:210px; background:var(--indigo); top:10px; left:40px;}
+  .skein.s2{width:170px; height:170px; background:var(--turmeric); top:150px; left:200px;}
+  .skein.s3{width:150px; height:150px; background:var(--madder); top:0; right:10px;}
+  .skein.s4{width:120px; height:120px; background:var(--charcoal); bottom:0; left:110px;}
+  .skein::after{
+    content:"";
+    position:absolute; inset:14%;
+    border-radius:50%;
+    background:repeating-conic-gradient(rgba(0,0,0,0.08) 0deg 4deg, transparent 4deg 8deg);
+  }
+  @media (max-width:860px){ .swatch-stack{height:260px;} }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:80px 0;}
+  .section-head{max-width:60ch; margin-bottom:48px;}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.3rem); margin-top:10px;}
+
+  /* ---------- ORIGIN / PROCESS ---------- */
+  .origin{background:var(--indigo); color:var(--cotton);}
+  .origin .eyebrow{color:var(--turmeric);}
+  .origin h2{color:var(--cotton);}
+  .origin p{color:rgba(243,236,220,0.82); max-width:62ch;}
+
+  .process{
+    margin-top:48px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:28px;
+  }
+  @media (max-width:860px){ .process{grid-template-columns:1fr 1fr;} }
+  @media (max-width:520px){ .process{grid-template-columns:1fr;} }
+  .step{
+    border-left:2px solid var(--turmeric);
+    padding-left:16px;
+  }
+  .step .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.8rem;
+    color:var(--turmeric);
+    display:block;
+    margin-bottom:8px;
+  }
+  .step h3{color:var(--cotton); font-size:1.08rem; margin-bottom:6px;}
+  .step p{color:rgba(243,236,220,0.72); font-size:0.92rem;}
+
+  /* ---------- COLLECTION ---------- */
+  .collection-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:28px;
+  }
+  @media (max-width:860px){ .collection-grid{grid-template-columns:1fr;} }
+
+  .product-card{
+    background:var(--cotton-dim);
+    border:1px solid rgba(43,38,32,0.1);
+    padding:0 0 24px;
+    overflow:hidden;
+  }
+  .product-swatch{
+    height:180px;
+    position:relative;
+    overflow:hidden;
+  }
+  .product-swatch::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image:repeating-linear-gradient(90deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 6px),
+                      repeating-linear-gradient(0deg, rgba(0,0,0,0.05) 0 2px, transparent 2px 6px);
+  }
+  .product-swatch.curtains{background:var(--indigo);}
+  .product-swatch.bedsheets{background:var(--turmeric);}
+  .product-swatch.cushions{background:var(--madder);}
+
+  .product-info{padding:22px 22px 0;}
+  .product-info h3{font-size:1.2rem; margin-bottom:6px;}
+  .product-info p{font-size:0.92rem; color:#5A5245; margin-bottom:14px;}
+  .price-row{
+    display:flex; justify-content:space-between; align-items:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.85rem;
+  }
+  .price-row .price{color:var(--madder); font-weight:500;}
+  .product-link{
+    text-decoration:none;
+    color:var(--charcoal);
+    border-bottom:1px solid var(--charcoal);
+  }
+  .product-link:hover{color:var(--madder); border-color:var(--madder);}
+
+  /* ---------- TRUST / DETAIL STRIP ---------- */
+  .detail-strip{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:1px;
+    background:rgba(43,38,32,0.14);
+    border-top:1px solid rgba(43,38,32,0.14);
+    border-bottom:1px solid rgba(43,38,32,0.14);
+  }
+  @media (max-width:700px){ .detail-strip{grid-template-columns:1fr;} }
+  .detail-cell{
+    background:var(--cotton);
+    padding:36px 32px;
+  }
+  .detail-cell .eyebrow{margin-bottom:8px;}
+  .detail-cell p{font-size:0.95rem; color:#4A4338;}
+
+  /* ---------- FINAL CTA ---------- */
+  .final-cta{
+    background:var(--charcoal);
+    color:var(--cotton);
+    text-align:center;
+    padding:96px 0;
+  }
+  .final-cta h2{color:var(--cotton); font-size:clamp(1.9rem,4vw,2.7rem); margin-bottom:16px;}
+  .final-cta p{color:rgba(243,236,220,0.7); max-width:50ch; margin:0 auto 34px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--cotton);
+    padding:40px 0;
+  }
+  .footer-row{
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  .footer-row .logo{font-size:1.05rem;}
+  .footer-links{
+    display:flex; gap:24px; list-style:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.78rem;
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+  }
+  .footer-links a{text-decoration:none;}
+  .footer-links a:hover{color:var(--madder);}
+  .footer-note{
+    font-size:0.78rem;
+    color:#8A8272;
+    margin-top:20px;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <div class="logo">HRGD <span>Home Decor</span></div>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+    <div class="nav-links" id="navLinks">
+      <ul>
+        <li><a href="#origin">Our Story</a></li>
+        <li><a href="#collection">Collection</a></li>
+        <li><a href="#details">Why Handloom</a></li>
+        <li><a href="#contact" class="btn-ghost">Enquire</a></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<div class="weave"></div>
+
+<section class="hero">
+  <div class="wrap" style="display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;">
+    <div>
+      <span class="eyebrow">Handloom, sourced from Haryana</span>
+      <h1>Threads with a place they come from.</h1>
+      <p class="lede">Curtains and bedsheets handwoven by artisan clusters in the Haryana textile belt — natural dyes, honest weave counts, and no two bolts quite the same.</p>
+      <div class="cta-row">
+        <a href="#collection" class="btn-primary" id="ctaMain">Explore the Collection</a>
+        <a href="#origin" class="btn-ghost">See how it's made</a>
+      </div>
+    </div>
+    <div class="swatch-stack" aria-hidden="true">
+      <div class="skein s1"></div>
+      <div class="skein s2"></div>
+      <div class="skein s3"></div>
+      <div class="skein s4"></div>
+    </div>
+  </div>
+</section>
+
+<div class="weave"></div>
+
+<section class="origin" id="origin">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">From yarn to your window</span>
+      <h2>Four steps, one belt, zero shortcuts.</h2>
+      <p>Every HRGD piece passes through the same small cluster of weavers northwest of Rohtak — a process that hasn't changed much in the way it's run, only in how carefully we track it.</p>
+    </div>
+    <div class="process">
+      <div class="step">
+        <span class="num">01 — Sourcing</span>
+        <h3>Raw cotton yarn</h3>
+        <p>Bought directly from ginning units, graded by staple length before it ever touches a dye vat.</p>
+      </div>
+      <div class="step">
+        <span class="num">02 — Dyeing</span>
+        <h3>Natural & low-impact dyes</h3>
+        <p>Indigo, madder root, and turmeric-based dyes, small-batch, air dried in open yards.</p>
+      </div>
+      <div class="step">
+        <span class="num">03 — Weaving</span>
+        <h3>Handloom, pit and frame</h3>
+        <p>Woven on traditional looms by artisan families — each bolt carries small, deliberate irregularities.</p>
+      </div>
+      <div class="step">
+        <span class="num">04 — Finishing</span>
+        <h3>Wash, hem, inspect</h3>
+        <p>Stone-washed for softness, hand-hemmed, and checked thread by thread before it ships.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="collection">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">The collection</span>
+      <h2>Three ways to bring the loom home.</h2>
+    </div>
+    <div class="collection-grid">
+      <div class="product-card">
+        <div class="product-swatch curtains" aria-hidden="true"></div>
+        <div class="product-info">
+          <h3>Indigo Weave Curtains</h3>
+          <p>Handloom cotton, natural indigo dye, light-filtering weight. Sold per panel.</p>
+          <div class="price-row">
+            <span class="price">&#8377;1,890</span>
+            <a href="#contact" class="product-link">Enquire &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-swatch bedsheets" aria-hidden="true"></div>
+        <div class="product-info">
+          <h3>Turmeric Field Bedsheet</h3>
+          <p>King-size handloom bedsheet, turmeric-dyed, two matching pillow covers included.</p>
+          <div class="price-row">
+            <span class="price">&#8377;2,450</span>
+            <a href="#contact" class="product-link">Enquire &rarr;</a>
+          </div>
+        </div>
+      </div>
+      <div class="product-card">
+        <div class="product-swatch cushions" aria-hidden="true"></div>
+        <div class="product-info">
+          <h3>Madder Root Cushion Set</h3>
+          <p>Set of two handloom cushion covers, madder-red, hand-finished edges.</p>
+          <div class="price-row">
+            <span class="price">&#8377;980</span>
+            <a href="#contact" class="product-link">Enquire &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="detail-strip" id="details">
+  <div class="detail-cell">
+    <span class="eyebrow">Weave count</span>
+    <p>Every listing states the actual thread count we measured, not a marketing round number.</p>
+  </div>
+  <div class="detail-cell">
+    <span class="eyebrow">Small batch</span>
+    <p>Most designs are woven in runs under 40 bolts — once a dye lot is gone, the exact shade won't repeat.</p>
+  </div>
+  <div class="detail-cell">
+    <span class="eyebrow">Direct from artisans</span>
+    <p>No distributor markup — pricing goes straight back to the weaving households we work with.</p>
+  </div>
+</div>
+
+<section class="final-cta" id="contact">
+  <div class="wrap">
+    <h2>Ready to see the fabric up close?</h2>
+    <p>Leave your details and we'll send swatch samples before you commit to a full order.</p>
+    <a href="#" class="btn-primary" id="ctaFinal">Request Swatch Samples</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-row">
+    <div class="logo">HRGD <span>Home Decor</span></div>
+    <ul class="footer-links">
+      <li><a href="#origin">Our Story</a></li>
+      <li><a href="#collection">Collection</a></li>
+      <li><a href="#contact">Enquire</a></li>
+    </ul>
+  </div>
+  <div class="wrap footer-note">
+    This is a dummy portfolio project built to demonstrate handloom brand positioning, front-end design, and behavioral analytics tracking (Microsoft Clarity). Not a live commercial store.
+  </div>
+</footer>
+
+<script>
+  var toggle = document.getElementById('menuToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){
+    var isOpen = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen);
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
+
+</body>
+</html>
